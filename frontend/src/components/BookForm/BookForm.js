@@ -15,7 +15,10 @@ const BookForm = () => {
 
         if (title && author) {
             const book = {
-                title, author, id: uuidv4(),
+                title, author,
+                id: uuidv4(),
+                isFavorite: false,
+
             };
 
             dispatch(addBook(book));
@@ -31,6 +34,7 @@ const BookForm = () => {
         const randomBook = {
             ...booksData[randomIndex],
             id: uuidv4(),
+            isFavorite: false,
         };
         dispatch(addBook(randomBook));
 
