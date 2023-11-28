@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {useDispatch} from 'react-redux';
-import createBookWithId from '../../utils/createBookWithId.js'
+import createBookWithId from '../../utils/createBookWithId.js';
 import {addBook} from '../../redux/books/actionCreators.js';
 import booksData from '../../data/books.json';
 import './BookForm.css';
@@ -16,7 +16,7 @@ const BookForm = () => {
         if (title && author) {
             const book = createBookWithId({
                 title,
-                author
+                author,
             });
             dispatch(addBook(book));
 
