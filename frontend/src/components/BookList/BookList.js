@@ -1,7 +1,7 @@
 import './BookList.css';
 import {useDispatch, useSelector} from 'react-redux';
 import {BsBookmarkStar, BsBookmarkStarFill} from 'react-icons/bs';
-import {deleteBook, toggleFavorite} from '../../redux/books/actionCreators.js';
+import {deleteBook, toggleFavorite} from '../../redux/slices/bookSlice.js';
 import {selectAuthorFilter, selectOnlyFavorite, selectTitleFilter} from '../../redux/slices/filterSlice.js';
 
 const BookList = () => {
