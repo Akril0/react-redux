@@ -6,10 +6,12 @@ import booksData from '../../data/books.json';
 import './BookForm.css';
 import axios from 'axios';
 import {setError} from '../../redux/slices/errorSlice.js';
+import {FaSpinner} from 'react-icons/fa';
 
 const BookForm = () => {
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
@@ -33,7 +35,12 @@ const BookForm = () => {
     };
 
     const handleAddRandomBookViaAPI = async () => {
-        dispatch(fetchBook('http://localhost:5000/random-book'));
+        try {
+            setIsLoading(true)
+            await dispatch(fetchBook('http://localhost:4000/random-book-delayed'));
+        }finally {
+          setIsLoading(false)
+        }
     };
 
     return (<div className="app-block book-form">
@@ -51,7 +58,13 @@ const BookForm = () => {
             </div>
             <button type="submit">Add Book</button>
             <button type="button" onClick={handleAddRandomBook}>Add Random</button>
-            <button type="button" onClick={handleAddRandomBookViaAPI}>Add Random via API
+            <button type="button" onClick={handleAddRandomBookViaAPI} disabled={isLoading}>
+                {isLoading?(
+                    <>
+                    <span>Loading Book...</span>
+                        <FaSpinner className='spinner'/>
+                    </>
+                ): 'Add Random via API'}
             </button>
         </form>
     </div>);
