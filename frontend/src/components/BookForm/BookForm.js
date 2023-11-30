@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import createBookWithId from '../../utils/createBookWithId.js';
-import {addBook, thunkFunction} from '../../redux/slices/bookSlice.js';
+import {addBook, fetchBook} from '../../redux/slices/bookSlice.js';
 import booksData from '../../data/books.json';
 import './BookForm.css';
 import axios from 'axios';
@@ -31,7 +31,7 @@ const BookForm = () => {
     };
 
     const handleAddRandomBookViaAPI = async () => {
-        dispatch(thunkFunction);
+        dispatch(fetchBook());
     };
 
     return (<div className="app-block book-form">
